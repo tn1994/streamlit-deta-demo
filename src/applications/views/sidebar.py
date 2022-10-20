@@ -3,6 +3,7 @@ import logging
 import streamlit as st
 
 from .base_view import spinner_wrapper
+from .deta_view import DetaView
 from ..services.version_service import VersionService
 
 logger = logging.getLogger(__name__)
@@ -12,6 +13,7 @@ class Sidebar:
 
     def __init__(self):
         self.service_dict = {
+            'deta_service': self.deta_service,
             'version_service': self.version_service,
         }
 
@@ -20,6 +22,12 @@ class Sidebar:
         if radio_value:
             select_service = self.service_dict[radio_value]
             select_service()
+
+    def deta_service(self):
+        project_key: str = st.secrets['project_key']
+        db_name: str = st.secrets['db_name']
+        deta_view = DetaView()
+        deta_view.main(project_key=project_key, db_name=db_name)
 
     @spinner_wrapper
     def version_service(self):
