@@ -64,9 +64,11 @@ class TestCase:
         assert isinstance(actual, str)
         assert expected == actual
 
-    def test_get_only_version_valid_5(self):
+    def test_get_only_version_invalid(self):
         expected = '4.11.1'
         actual = get_only_version(text='beautifulsoup41==4.11.1')
         assert isinstance(expected, str)
         assert isinstance(actual, str)
-        assert expected == actual
+        with pytest.raises(AssertionError):
+            assert expected == actual
+        assert '41' == actual

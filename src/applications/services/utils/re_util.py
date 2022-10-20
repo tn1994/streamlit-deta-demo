@@ -7,5 +7,5 @@ def get_only_number(text: str) -> str:
 
 
 def get_only_version(text: str) -> str:
-    version = re.search(r'[\d.]+[\w.]*$', text)
+    version = re.search(r'[\d.]+[\w.]*', text)
     return version.group()

@@ -10,4 +10,5 @@ services:
       - ./.streamlit:/.streamlit
     ports:
       - '8501:8501'
+      - '5000:5000'
     command: streamlit run /app/src/app.py
